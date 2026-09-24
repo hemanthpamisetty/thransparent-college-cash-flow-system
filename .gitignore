@@ -1,0 +1,52 @@
+# ==================================
+# COLLEGE CASHFLOW MONITORING SYSTEM
+# ==================================
+
+# ---- Dependencies ----
+node_modules/
+target/
+
+# ---- Environment Variables ----
+.env
+.env.local
+.env.production
+
+# ---- Build Output ----
+dist/
+build/
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.iml
+
+# ---- OS Files ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Java / Maven ----
+*.class
+*.jar
+*.war
+*.ear
+
+# ---- Temp Files ----
+*.tmp
+*.swp
+*~
+
+# ==================================
+# DO NOT IGNORE
+# ==================================
+# package.json
+# package-lock.json
+# pom.xml
+# schema.sql
+# seed.sql
+# README.md
+# .env.example

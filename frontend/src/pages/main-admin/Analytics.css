@@ -1,0 +1,542 @@
+/* ============================================
+   Analytics.css — Styles for analytics/report pages
+   ============================================ */
+
+/* Page Layout */
+.analytics-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c1220 0%, #1a2744 50%, #0f1b2e 100%);
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.analytics-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Page Header */
+.analytics-header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.analytics-title-group h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #70a1ff, #4f8cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.analytics-title-group p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+/* Date Range Controls */
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.date-range-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.date-range-group label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+
+.date-range-group input[type="date"] {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+}
+
+.date-range-group input[type="date"]:focus {
+  border-color: #4f8cff;
+}
+
+.preset-btns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+  background: rgba(79, 140, 255, 0.15);
+  color: #70a1ff;
+  border-color: rgba(79, 140, 255, 0.3);
+}
+
+.preset-btn.active {
+  background: rgba(79, 140, 255, 0.25);
+  border-color: #4f8cff;
+  color: #ffffff;
+}
+
+/* Export Buttons */
+.export-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.export-btn.csv {
+  background: rgba(46, 213, 115, 0.15);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+  color: #2ed573;
+}
+
+.export-btn.csv:hover {
+  background: rgba(46, 213, 115, 0.28);
+}
+
+.export-btn.pdf {
+  background: rgba(255, 107, 122, 0.15);
+  border: 1px solid rgba(255, 107, 122, 0.3);
+  color: #ff6b7a;
+}
+
+.export-btn.pdf:hover {
+  background: rgba(255, 107, 122, 0.28);
+}
+
+/* Summary KPI Row */
+.analytics-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+}
+
+.kpi-card .kpi-icon {
+  font-size: 24px;
+}
+
+.kpi-card .kpi-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.kpi-card .kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.kpi-card.income {
+  border-left: 4px solid #2ed573;
+}
+
+.kpi-card.income .kpi-value {
+  color: #2ed573;
+}
+
+.kpi-card.expense {
+  border-left: 4px solid #ff4757;
+}
+
+.kpi-card.expense .kpi-value {
+  color: #ff6b7a;
+}
+
+.kpi-card.balance {
+  border-left: 4px solid #4f8cff;
+}
+
+.kpi-card.balance .kpi-value {
+  color: #70a1ff;
+}
+
+.kpi-card.count {
+  border-left: 4px solid #ffa502;
+}
+
+.kpi-card.count .kpi-value {
+  color: #ffc048;
+}
+
+/* Chart Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.charts-grid.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.charts-grid.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Chart Card */
+.chart-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease;
+}
+
+.chart-card:hover {
+  border-color: rgba(79, 140, 255, 0.25);
+}
+
+.chart-card .chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+}
+
+.chart-card .chart-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 20px 0;
+}
+
+.chart-card .chart-container {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+}
+
+.chart-card .chart-container.small {
+  min-height: 260px;
+}
+
+/* Department Table */
+.dept-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.dept-summary-table th {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dept-summary-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.dept-summary-table tr:hover td {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dept-summary-table .income-val {
+  color: #2ed573;
+  font-weight: 600;
+}
+
+.dept-summary-table .expense-val {
+  color: #ff6b7a;
+  font-weight: 600;
+}
+
+.dept-summary-table .balance-val {
+  font-weight: 700;
+}
+
+.dept-summary-table .balance-val.positive {
+  color: #2ed573;
+}
+
+.dept-summary-table .balance-val.negative {
+  color: #ff6b7a;
+}
+
+/* Loading State */
+.analytics-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+}
+
+.analytics-loading .spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(79, 140, 255, 0.2);
+  border-top-color: #4f8cff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.analytics-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.analytics-empty .empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.analytics-empty p {
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Report Filter Panel */
+.report-filter-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.report-filter-panel .filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.report-filter-panel .filter-field label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.report-filter-panel .filter-field input,
+.report-filter-panel .filter-field select {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+}
+
+.report-filter-panel .filter-field input:focus,
+.report-filter-panel .filter-field select:focus {
+  border-color: #4f8cff;
+}
+
+.report-filter-panel .filter-field select option {
+  background: #141f36;
+  color: #ffffff;
+}
+
+/* Report Summary Cards */
+.report-summary-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.report-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.report-stat-card .stat-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.report-stat-card .stat-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.report-stat-card .stat-value.income {
+  color: #2ed573;
+}
+
+.report-stat-card .stat-value.expense {
+  color: #ff6b7a;
+}
+
+.report-stat-card .stat-value.balance {
+  color: #70a1ff;
+}
+
+.report-stat-card .stat-value.count {
+  color: #ffc048;
+}
+
+/* Monthly Table */
+.monthly-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.monthly-table th {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.monthly-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.monthly-table tr:hover td {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.monthly-table .total-row td {
+  font-weight: 700;
+  border-top: 2px solid rgba(79, 140, 255, 0.3);
+  background: rgba(79, 140, 255, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .charts-grid.two-col,
+  .charts-grid.three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-content {
+    padding: 20px 16px;
+  }
+
+  .analytics-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .date-controls {
+    width: 100%;
+  }
+
+  .date-range-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .analytics-kpi-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .report-filter-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

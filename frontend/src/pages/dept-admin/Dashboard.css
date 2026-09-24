@@ -1,0 +1,197 @@
+/* ============================================
+   Dashboard.css — Shared dashboard styles
+   ============================================ */
+
+.dashboard-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c1220 0%, #1a2744 50%, #0f1b2e 100%);
+  color: #ffffff;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  font-size: 28px;
+}
+
+.header-left h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.user-info {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.user-info strong {
+  color: #ffffff;
+}
+
+.role-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.role-badge.main-admin {
+  background: linear-gradient(135deg, #4f8cff 0%, #3a6fdb 100%);
+  color: #ffffff;
+}
+
+.role-badge.dept-admin {
+  background: linear-gradient(135deg, #00c9a7 0%, #00a68a 100%);
+  color: #ffffff;
+}
+
+.logout-btn {
+  padding: 8px 20px;
+  background: rgba(255, 71, 87, 0.15);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  color: #ff6b7a;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 71, 87, 0.25);
+  border-color: rgba(255, 71, 87, 0.5);
+}
+
+/* Content */
+.dashboard-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
+.welcome-section {
+  margin-bottom: 36px;
+}
+
+.welcome-section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.welcome-section p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dept-name-display {
+  margin-top: 4px;
+}
+
+.dept-name-display strong {
+  color: #00c9a7;
+  font-size: 16px;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.dash-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.25s ease;
+}
+
+.dash-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+  font-size: 32px;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.card-status {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  align-self: flex-start;
+  font-weight: 500;
+}
+
+/* Loading */
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c1220;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 12px 16px;
+  }
+  .dashboard-content {
+    padding: 24px 16px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
