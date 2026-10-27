@@ -6,10 +6,13 @@
 node_modules/
 target/
 
-# ---- Environment Variables ----
+# ---- Environment Variables & Secrets ----
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
+*.env
+backend/.env
+frontend/.env
 
 # ---- Build Output ----
 dist/

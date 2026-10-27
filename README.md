@@ -175,7 +175,7 @@ college-cashflow-monitoring-system/
 
 ### Step 1: Database Setup
 
-1. Open your MySQL client (MySQL Workbench, CLI, or DBeaver).
+1. Open your MySQL client (MySQL CLI, MySQL Workbench, or PowerShell).
 2. Create the database and run the schema and seed scripts:
 
 ```sql
@@ -183,10 +183,10 @@ CREATE DATABASE college_cashflow;
 USE college_cashflow;
 ```
 
-3. Execute the SQL scripts in order:
-   - `database/schema.sql`
-   - `database/seed.sql`
-   - `database/week2_migration.sql` *(if applying incremental migration)*
+3. Execute the SQL scripts:
+   - `database/schema.sql` (Creates all tables and indexes)
+   - `database/seed.sql` (Optional development test accounts and sample transactions)
+   > ⚠️ **Note:** `database/week2_migration.sql` is an incremental migration for upgrading legacy Week 1 databases only. Do **not** run it on a fresh database.
 
 ---
 
@@ -196,18 +196,24 @@ USE college_cashflow;
    ```bash
    cd backend
    ```
-2. Configure your environment variables. Copy `.env.example` to `.env` or set `backend/src/main/resources/application.properties`:
+2. Configure your local environment variables. Copy `.env.example` to `.env`:
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+   Edit `.env` with your local database credentials and a secure 256-bit JWT secret:
    ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/college_cashflow
-   spring.datasource.username=root
-   spring.datasource.password=YOUR_PASSWORD
-   app.jwt.secret=your_secure_jwt_secret_key_at_least_256_bits_long
+   PORT=8081
+   DB_URL=jdbc:mysql://localhost:3306/college_cashflow?useSSL=false&serverTimezone=Asia/Kolkata&allowPublicKeyRetrieval=true
+   DB_USERNAME=root
+   DB_PASSWORD=YOUR_LOCAL_MYSQL_PASSWORD
+   JWT_SECRET=your_secure_jwt_secret_key_at_least_32_characters_long
+   CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
    ```
 3. Run the Spring Boot application:
    ```bash
    mvn spring-boot:run
    ```
-   *Backend server will start at: `http://localhost:8080`*
+   *Backend server will start at: `http://localhost:8081`*
 
 ---
 

@@ -23,9 +23,19 @@
 | `eceadmin` | `Admin@123` | `DEPT_ADMIN` | ECE (ID: 2)         |
 | `eeeadmin` | `Admin@123` | `DEPT_ADMIN` | EEE (ID: 3)         |
 
-## Re-running Scripts (If Needed)
+## Database Initialization & Setup
+
+Execute the schema first, then optionally apply the development seed data:
+
+> ⚠️ **Warning**: `seed.sql` truncates existing records before inserting seed data. Do not run `seed.sql` if you wish to retain existing transactions.
+> ⚠️ **Notice**: `week2_migration.sql` is an incremental migration script for upgrading legacy Week 1 databases only. Do NOT run it on a fresh database.
 
 ```powershell
-& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -pHemu@123 college_cashflow -e "source database/schema.sql"
-& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -pHemu@123 college_cashflow -e "source database/seed.sql"
+# Using mysql client (prompts securely for password):
+mysql -u root -p -e "source database/schema.sql"
+mysql -u root -p college_cashflow -e "source database/seed.sql"
+
+# Or if using the explicit MySQL 8.0 installation path:
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p -e "source database/schema.sql"
+& "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p college_cashflow -e "source database/seed.sql"
 ```
