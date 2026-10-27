@@ -29,12 +29,14 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor — handle 401 (unauthorized) and 403 (forbidden) globally
+// Response interceptor — handle 401 (unauthorized token expiry) globally
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-      // Clear auth data and redirect to login
+    // Only auto-redirect on 401 for non-auth endpoints (e.g. token expired/invalid on protected APIs)
+    // Never reload/redirect on /auth/ login failure so login errors remain visible to users
+    const isAuthEndpoint = error.config?.url?.includes('/auth/');
+    if (error.response?.status === 401 && !isAuthEndpoint) {
       clearAuthData();
       window.location.href = '/login';
     }

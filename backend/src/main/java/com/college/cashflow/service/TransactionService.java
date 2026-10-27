@@ -119,6 +119,10 @@ public class TransactionService {
                                                     String username) {
         User currentUser = getUserByUsername(username);
 
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
+
         // Role-based department scoping
         Long targetDeptId = departmentId;
         if (currentUser.getRole() == Role.DEPT_ADMIN) {
@@ -181,6 +185,9 @@ public class TransactionService {
                     !transaction.getDepartment().getId().equals(currentUser.getDepartment().getId())) {
                 throw new AccessDeniedException("Access denied: You cannot update transactions of other departments");
             }
+            if (!Boolean.TRUE.equals(currentUser.getDepartment().getActive())) {
+                throw new IllegalStateException("Department Admin is not assigned to an active department");
+            }
         } else if (currentUser.getRole() == Role.MAIN_ADMIN) {
             if (request.getDepartmentId() != null && !request.getDepartmentId().equals(transaction.getDepartment().getId())) {
                 Department newDept = departmentRepository.findById(request.getDepartmentId())
@@ -233,6 +240,9 @@ public class TransactionService {
             if (currentUser.getDepartment() == null ||
                     !transaction.getDepartment().getId().equals(currentUser.getDepartment().getId())) {
                 throw new AccessDeniedException("Access denied: You cannot delete transactions of other departments");
+            }
+            if (!Boolean.TRUE.equals(currentUser.getDepartment().getActive())) {
+                throw new IllegalStateException("Department Admin is not assigned to an active department");
             }
         }
 

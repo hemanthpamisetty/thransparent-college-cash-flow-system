@@ -133,7 +133,10 @@ public class UserService {
 
         // Update password if provided
         if (StringUtils.hasText(request.getPassword())) {
-            user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+            if (request.getPassword().trim().length() < 6) {
+                throw new IllegalArgumentException("Password must be at least 6 characters");
+            }
+            user.setPasswordHash(passwordEncoder.encode(request.getPassword().trim()));
         }
 
         User updated = userRepository.save(user);

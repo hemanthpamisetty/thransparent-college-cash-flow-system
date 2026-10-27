@@ -39,6 +39,10 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<DailyCashflowDTO> getCashflowTrend(LocalDate startDate, LocalDate endDate,
                                                     Long departmentId, String username) {
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
+
         Long targetDeptId = resolveTargetDepartmentId(departmentId, username);
 
         List<Object[]> rawData = transactionRepository.findDailyCashflowRaw(startDate, endDate, targetDeptId);
@@ -48,7 +52,7 @@ public class ReportService {
 
         for (Object[] row : rawData) {
             LocalDate date = convertToLocalDate(row[0]);
-            String type = (String) row[1];
+            String type = row[1] != null ? row[1].toString() : "";
             BigDecimal amount = convertToBigDecimal(row[2]);
 
             DailyCashflowDTO dto = dailyMap.computeIfAbsent(date, d ->
@@ -82,6 +86,10 @@ public class ReportService {
     public List<CategoryBreakdownDTO> getCategoryBreakdown(LocalDate startDate, LocalDate endDate,
                                                             Long departmentId, String transactionType,
                                                             String username) {
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
+
         Long targetDeptId = resolveTargetDepartmentId(departmentId, username);
 
         List<Object[]> rawData = transactionRepository.findCategoryBreakdownRaw(
@@ -89,10 +97,13 @@ public class ReportService {
 
         List<CategoryBreakdownDTO> results = new ArrayList<>();
         for (Object[] row : rawData) {
+            String catTypeStr = row[2] != null ? row[2].toString() : null;
+            CategoryType catType = catTypeStr != null ? CategoryType.valueOf(catTypeStr) : null;
+
             results.add(CategoryBreakdownDTO.builder()
                     .categoryId(convertToLong(row[0]))
-                    .categoryName((String) row[1])
-                    .categoryType(CategoryType.valueOf((String) row[2]))
+                    .categoryName(row[1] != null ? row[1].toString() : "")
+                    .categoryType(catType)
                     .totalAmount(convertToBigDecimal(row[3]))
                     .transactionCount(convertToLong(row[4]))
                     .build());
@@ -107,6 +118,10 @@ public class ReportService {
     @Transactional(readOnly = true)
     public List<DepartmentSummaryDTO> getDepartmentSummary(LocalDate startDate, LocalDate endDate,
                                                             String username) {
+        if (startDate != null && endDate != null && startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("Start date cannot be after end date");
+        }
+
         User currentUser = getUserByUsername(username);
         if (currentUser.getRole() != Role.MAIN_ADMIN) {
             throw new AccessDeniedException("Only Main Admin can view department-wise summary");
@@ -119,9 +134,9 @@ public class ReportService {
 
         for (Object[] row : rawData) {
             Long deptId = convertToLong(row[0]);
-            String deptName = (String) row[1];
-            String deptCode = (String) row[2];
-            String type = (String) row[3];
+            String deptName = row[1] != null ? row[1].toString() : "";
+            String deptCode = row[2] != null ? row[2].toString() : "";
+            String type = row[3] != null ? row[3].toString() : "";
             BigDecimal amount = convertToBigDecimal(row[4]);
             Long count = convertToLong(row[5]);
 
@@ -206,7 +221,7 @@ public class ReportService {
         for (Object[] row : rawData) {
             Integer yr = convertToInt(row[0]);
             Integer month = convertToInt(row[1]);
-            String type = (String) row[2];
+            String type = row[2] != null ? row[2].toString() : "";
             BigDecimal amount = convertToBigDecimal(row[3]);
             Long count = convertToLong(row[4]);
 
